@@ -1,3 +1,4 @@
+import 'package:convenient_store_management/src/barcode_example/barcode_example.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -71,6 +72,8 @@ class MyApp extends StatelessWidget {
                     return SettingsView(controller: settingsController);
                   case SampleItemDetailsView.routeName:
                     return const SampleItemDetailsView();
+                  case BarcodeExample.routeName:
+                    return const BarcodeExample();
                   case SampleItemListView.routeName:
                   default:
                     return const SampleItemListView();
