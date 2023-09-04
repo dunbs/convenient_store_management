@@ -1,0 +1,6 @@
+{
+  "appTitle": "Quản lý tiệm tạp hóa",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}

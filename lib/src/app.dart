@@ -1,16 +1,16 @@
 import 'package:convenient_store_management/src/barcode_example/barcode_example.dart';
+import 'package:convenient_store_management/src/features/product_list/views/product_list.dart';
+import 'package:convenient_store_management/src/features/product_register/views/product_register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
 /// The Widget that configures your application.
-class MyApp extends StatelessWidget {
-  const MyApp({
+class ConvenientStoreManagement extends StatelessWidget {
+  const ConvenientStoreManagement({
     super.key,
     required this.settingsController,
   });
@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
+            Locale('vi', 'vn'),
             Locale('en', ''), // English, no country code
           ],
 
@@ -68,15 +69,15 @@ class MyApp extends StatelessWidget {
               settings: routeSettings,
               builder: (BuildContext context) {
                 switch (routeSettings.name) {
+                  case ProductRegister.routeName:
+                    return const ProductRegister();
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
                   case BarcodeExample.routeName:
                     return const BarcodeExample();
-                  case SampleItemListView.routeName:
+                  case ProductList.routeName:
                   default:
-                    return const SampleItemListView();
+                    return const ProductList();
                 }
               },
             );
