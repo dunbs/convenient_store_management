@@ -27,7 +27,6 @@ class ProductList extends ConsumerWidget {
       body: data.when(
           data: (data) {
             final products = data.entries.map((e) => e.value).toList();
-            print(products);
             return ListView.builder(
               restorationId: 'ProductListListView',
               itemCount: products.length,
@@ -62,7 +61,6 @@ class ProductList extends ConsumerWidget {
                 final barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
                     '#ff6666', 'Cancel', true, ScanMode.QR);
 
-                print('Barcode: $barcodeScanRes');
                 var product = await ref
                     .read(productRepositoryDemoProvider.notifier)
                     .getProductById(barcodeScanRes);
