@@ -70,7 +70,10 @@ class ConvenientStoreManagement extends StatelessWidget {
               builder: (BuildContext context) {
                 switch (routeSettings.name) {
                   case ProductRegister.routeName:
-                    return const ProductRegister();
+                    final argsJson =
+                        routeSettings.arguments as Map<String, dynamic>;
+                    final args = ProductRegisterArgs.fromJson(argsJson);
+                    return ProductRegister.fromArgs(args: args);
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   case BarcodeExample.routeName:

@@ -1,6 +1,7 @@
 import 'package:convenient_store_management/src/controller/demo/product_repository_demo.dart';
 import 'package:convenient_store_management/src/features/product_register/views/product_register.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
@@ -55,8 +56,22 @@ class ProductList extends ConsumerWidget {
       floatingActionButton: data.hasValue
           ? FloatingActionButton(
               child: const Icon(Icons.add),
-              onPressed: () => Navigator.of(context)
-                  .restorablePushNamed(ProductRegister.routeName))
+              onPressed: () async {
+                var navigator = Navigator.of(context);
+
+                final barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+                    '#ff6666', 'Cancel', true, ScanMode.QR);
+
+                print('Barcode: $barcodeScanRes');
+                var product = await ref
+                    .read(productRepositoryDemoProvider.notifier)
+                    .getProductById(barcodeScanRes);
+
+                navigator.restorablePushNamed(ProductRegister.routeName,
+                    arguments: ProductRegisterArgs(
+                            id: barcodeScanRes, product: product)
+                        .toJson());
+              })
           : null,
     );
   }

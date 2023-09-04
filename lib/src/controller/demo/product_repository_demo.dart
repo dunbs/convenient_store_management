@@ -17,12 +17,8 @@ class ProductRepositoryDemo extends _$ProductRepositoryDemo
   }
 
   @override
-  FutureOr<Product> getProductById(String id) {
-    if (!products.containsKey(id)) {
-      throw Exception("Product with the id $id is not found!");
-    }
-
-    return products[id]!;
+  FutureOr<Product?> getProductById(String id) {
+    return products[id];
   }
 
   @override

@@ -4,11 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-class ProductRegister extends ConsumerStatefulWidget {
-  const ProductRegister({super.key});
+part 'product_register.freezed.dart';
+part 'product_register.g.dart';
 
+@freezed
+class ProductRegisterArgs with _$ProductRegisterArgs {
+  const factory ProductRegisterArgs({required String id, Product? product}) =
+      _ProductRegisterArgs;
+
+  factory ProductRegisterArgs.fromJson(Map<String, dynamic> json) =>
+      _$ProductRegisterArgsFromJson(json);
+}
+
+class ProductRegister extends ConsumerStatefulWidget {
+  final String id;
+  final Product? product;
+  const ProductRegister({super.key, required this.id, this.product});
+  ProductRegister.fromArgs({super.key, required ProductRegisterArgs args})
+      : id = args.id,
+        product = args.product;
   static const routeName = '/product_register';
 
   @override
@@ -27,6 +44,16 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
       mantissaLength: 0, trailingSymbol: '₫', useSymbolPadding: true);
 
   @override
+  void initState() {
+    super.initState();
+
+    _productName = widget.product?.name;
+    _costPrice = widget.product?.costPrice?.round();
+    _sellingPrice = widget.product?.sellingPrice.round() ?? 0;
+    _inStock = widget.product?.inStock?.round();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
@@ -35,8 +62,8 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
           actions: [
             IconButton(
               onPressed: () async {
-                var product = Product(
-                    id: UniqueKey().toString(),
+                final product = Product(
+                    id: widget.id,
                     name: _productName,
                     costPrice: _costPrice?.roundToDouble(),
                     sellingPrice: _sellingPrice.roundToDouble(),
@@ -81,6 +108,7 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                initialValue: _productName,
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     labelText: 'Tên sản phẩm ',
@@ -89,6 +117,10 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                initialValue: _costPrice?.toCurrencyString(
+                    mantissaLength: 0,
+                    trailingSymbol: '₫',
+                    useSymbolPadding: true),
                 decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: 'Giá nhập ',
@@ -102,7 +134,10 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
               ),
               const SizedBox(height: 30),
               TextFormField(
-                initialValue: '0 ₫',
+                initialValue: _sellingPrice.toCurrencyString(
+                    mantissaLength: 0,
+                    trailingSymbol: '₫',
+                    useSymbolPadding: true),
                 decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: 'Giá bán* ',
@@ -118,11 +153,12 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                initialValue: _inStock.toString().toCurrencyString(),
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     labelText: 'Số lượng ',
                     hintText: '(có thể trống)'),
-                inputFormatters: [MaskedInputFormatter('000,000,000,000')],
+                inputFormatters: [CurrencyInputFormatter(mantissaLength: 0)],
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 // onChanged: (newValue) =>
