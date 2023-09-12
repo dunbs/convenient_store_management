@@ -9,6 +9,7 @@ part 'product_repository.g.dart';
 abstract class ProductRepository extends _$ProductRepository {
   @override
   FutureOr<Map<String, Product>> build();
+
   FutureOr<Product?> getProductById(String id);
 
   FutureOr<bool> addOrUpdateProduct(Product product);

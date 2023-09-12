@@ -1,4 +1,3 @@
-import 'package:convenient_store_management/src/controller/demo/product_repository_demo.dart';
 import 'package:convenient_store_management/src/controller/product_repository.dart';
 import 'package:convenient_store_management/src/features/product_register/views/product_register.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +62,7 @@ class ProductList extends ConsumerWidget {
                     '#ff6666', 'Cancel', true, ScanMode.QR);
 
                 var product = await ref
-                    .read(productRepositoryDemoProvider.notifier)
+                    .read(productRepositoryProvider.notifier)
                     .getProductById(barcodeScanRes);
 
                 navigator.restorablePushNamed(ProductRegister.routeName,
