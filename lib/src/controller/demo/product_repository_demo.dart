@@ -2,13 +2,8 @@ import 'dart:async';
 
 import 'package:convenient_store_management/src/controller/product_repository.dart';
 import 'package:convenient_store_management/src/models/models.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'product_repository_demo.g.dart';
-
-@Riverpod(keepAlive: true)
-class ProductRepositoryDemo extends _$ProductRepositoryDemo
-    implements ProductRepository {
+class ProductRepositoryDemo extends ProductRepository {
   final Map<String, Product> products = {};
 
   @override

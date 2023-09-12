@@ -1,4 +1,5 @@
 import 'package:convenient_store_management/src/controller/demo/product_repository_demo.dart';
+import 'package:convenient_store_management/src/controller/product_repository.dart';
 import 'package:convenient_store_management/src/features/product_register/views/product_register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -21,7 +22,7 @@ class ProductList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var data = ref.watch(productRepositoryDemoProvider);
+    final data = ref.watch(productRepositoryProvider);
 
     return Scaffold(
       body: data.when(

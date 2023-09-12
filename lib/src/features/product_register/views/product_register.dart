@@ -87,7 +87,7 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
                 );
 
                 await ref
-                    .read(productRepositoryDemoProvider.notifier)
+                    .read(productRepositoryProvider.notifier)
                     .addOrUpdateProduct(product);
 
                 navigator.pop();
