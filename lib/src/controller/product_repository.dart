@@ -7,6 +7,12 @@ part 'product_repository.g.dart';
 
 @riverpod
 abstract class ProductRepository extends _$ProductRepository {
+  ProductRepository.internal();
+
+  factory ProductRepository() {
+    throw UnimplementedError();
+  }
+
   @override
   FutureOr<Map<String, Product>> build();
 
@@ -14,11 +20,21 @@ abstract class ProductRepository extends _$ProductRepository {
 
   FutureOr<bool> addOrUpdateProduct(Product product);
 
-  Stream<bool> removeProducts(List<Product> products);
+  Stream<bool> removeProducts(List<Product> products) {
+    return Stream<bool>.fromFutures(products.map((e) {
+      return Future(() => removeProduct(e));
+    }));
+  }
 
-  FutureOr<bool> removeProduct(Product product);
+  FutureOr<bool> removeProduct(Product product) {
+    return removeProductById(product.id);
+  }
 
-  Stream<bool> removeProductByIds(List<String> ids);
+  Stream<bool> removeProductByIds(List<String> ids) {
+    return Stream<bool>.fromFutures(ids.map((id) {
+      return Future(() => removeProductById(id));
+    }));
+  }
 
   FutureOr<bool> removeProductById(String id);
 }

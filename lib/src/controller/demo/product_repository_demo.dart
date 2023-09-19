@@ -6,6 +6,8 @@ import 'package:convenient_store_management/src/models/models.dart';
 class ProductRepositoryDemo extends ProductRepository {
   final Map<String, Product> products = {};
 
+  ProductRepositoryDemo() : super.internal();
+
   @override
   FutureOr<Map<String, Product>> build() async {
     return products;
@@ -21,25 +23,6 @@ class ProductRepositoryDemo extends ProductRepository {
     products[product.id] = product;
     update((p0) => products);
     return true;
-  }
-
-  @override
-  Stream<bool> removeProducts(List<Product> products) {
-    return Stream<bool>.fromFutures(products.map((e) {
-      return Future(() => removeProduct(e));
-    }));
-  }
-
-  @override
-  FutureOr<bool> removeProduct(Product product) {
-    return removeProductById(product.id);
-  }
-
-  @override
-  Stream<bool> removeProductByIds(List<String> ids) {
-    return Stream<bool>.fromFutures(ids.map((id) {
-      return Future(() => removeProductById(id));
-    }));
   }
 
   @override

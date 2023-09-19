@@ -1,4 +1,5 @@
 import 'package:convenient_store_management/firebase_options.dart';
+import 'package:convenient_store_management/src/controller/controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,6 +26,9 @@ void main() async {
   // SettingsController for changes, then passes it further down to the
   // SettingsView.
   runApp(ProviderScope(
+    overrides: [
+      productRepositoryProvider.overrideWith(() => ProductRepositoryDemo())
+    ],
     child: ConvenientStoreManagement(settingsController: settingsController),
   ));
 }
