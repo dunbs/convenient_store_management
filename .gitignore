@@ -45,3 +45,7 @@ app.*.map.json
 ios/Runner/GoogleService-Info.plist
 ios/firebase_app_id_file.json
 android/app/google-services.json
+.firebaserc
+database.rules.json
+firebase.json
+remoteconfig.template.json
