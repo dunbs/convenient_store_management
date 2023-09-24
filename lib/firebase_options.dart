@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '55561937958',
     projectId: 'convenient-store-management',
     authDomain: 'convenient-store-management.firebaseapp.com',
+    databaseURL: 'https://convenient-store-management-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'convenient-store-management.appspot.com',
   );
 
@@ -60,6 +61,7 @@ class DefaultFirebaseOptions {
     appId: '1:55561937958:android:d3c233bd2222eb99dd32e7',
     messagingSenderId: '55561937958',
     projectId: 'convenient-store-management',
+    databaseURL: 'https://convenient-store-management-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'convenient-store-management.appspot.com',
   );
 
@@ -68,6 +70,7 @@ class DefaultFirebaseOptions {
     appId: '1:55561937958:ios:7b41cf6b949fe3e0dd32e7',
     messagingSenderId: '55561937958',
     projectId: 'convenient-store-management',
+    databaseURL: 'https://convenient-store-management-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'convenient-store-management.appspot.com',
     iosClientId: '55561937958-81qq6tkvrh8p408pp13kckvvr8i29nqm.apps.googleusercontent.com',
     iosBundleId: 'com.duong.management.shop.convenientStoreManagement',

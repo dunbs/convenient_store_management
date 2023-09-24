@@ -10,7 +10,9 @@ class Product with _$Product {
     String? name,
     double? costPrice,
     required double sellingPrice,
-    int? inStock,
+    int? quantity,
+    String? unit,
+    String? imageUrl,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>
