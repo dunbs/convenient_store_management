@@ -1,6 +1,7 @@
 import 'package:convenient_store_management/firebase_options.dart';
 import 'package:convenient_store_management/src/controller/controller.dart';
 import 'package:convenient_store_management/src/controller/demo/product_repository_demo.dart';
+import 'package:convenient_store_management/src/controller/realtime_database/product_repository_rd.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +30,7 @@ void main() async {
   runApp(ProviderScope(
     observers: [Logger()],
     overrides: [
-      productRepositoryProvider.overrideWith(() => ProductRepositoryDemo())
+      productRepositoryProvider.overrideWith(() => ProductRepositoryRD())
     ],
     child: ConvenientStoreManagement(settingsController: settingsController),
   ));
