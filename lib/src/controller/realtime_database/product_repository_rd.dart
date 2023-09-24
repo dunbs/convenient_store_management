@@ -26,9 +26,10 @@ class ProductRepositoryRD extends ProductRepository {
     return _firebaseDatabase.ref("products").get().then((snapshot) {
       final result = <String, Product>{};
 
-      final values = snapshot.value as Map<String, dynamic>;
-      values.forEach((key, value) {
-        result[key] = Product.fromJson(value);
+      final values = snapshot.value as Map<dynamic, dynamic>?;
+      values?.forEach((key, value) {
+        final json = Map<String, dynamic>.from((value));
+        result[key.toString()] = Product.fromJson(json);
       });
 
       return result;
@@ -43,9 +44,10 @@ class ProductRepositoryRD extends ProductRepository {
         return null;
       }
 
-      final values = snapshot.value as Map<String, dynamic>;
+      final values = (snapshot.value as Map?);
+      final json = Map<String, dynamic>.from(values!);
 
-      return Product.fromJson(values);
+      return Product.fromJson(json);
     });
   }
 

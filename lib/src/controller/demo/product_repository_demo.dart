@@ -4,7 +4,43 @@ import 'package:convenient_store_management/src/controller/product_repository.da
 import 'package:convenient_store_management/src/models/models.dart';
 
 class ProductRepositoryDemo extends ProductRepository {
-  final Map<String, Product> products = {};
+  final Map<String, Product> products = const {
+    "1": Product(
+      id: "1",
+      name: "Coca Cola",
+      sellingPrice: 10000,
+      quantity: 10,
+      unit: "can",
+    ),
+    "2": Product(
+      id: "2",
+      name: "Pepsi",
+      sellingPrice: 10000,
+      quantity: 10,
+      unit: "can",
+    ),
+    "3": Product(
+      id: "3",
+      name: "Fanta",
+      sellingPrice: 20000,
+      quantity: 10,
+      unit: "can",
+    ),
+    "4": Product(
+      id: "4",
+      name: "7up",
+      sellingPrice: 20000,
+      quantity: 10,
+      unit: "can",
+    ),
+    "5": Product(
+      id: "5",
+      name: "Mirinda",
+      sellingPrice: 20000,
+      quantity: 10,
+      unit: "can",
+    ),
+  };
 
   ProductRepositoryDemo() : super.internal();
 

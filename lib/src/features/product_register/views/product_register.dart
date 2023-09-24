@@ -50,7 +50,7 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
     _productName = widget.product?.name;
     _costPrice = widget.product?.costPrice?.round();
     _sellingPrice = widget.product?.sellingPrice.round() ?? 0;
-    _inStock = widget.product?.inStock?.round();
+    _inStock = widget.product?.quantity?.round();
   }
 
   @override
@@ -67,7 +67,7 @@ class _ProductRegisterState extends ConsumerState<ProductRegister> {
                     name: _productName,
                     costPrice: _costPrice?.roundToDouble(),
                     sellingPrice: _sellingPrice.roundToDouble(),
-                    inStock: _inStock);
+                    quantity: _inStock);
 
                 var navigator = Navigator.of(context);
 
